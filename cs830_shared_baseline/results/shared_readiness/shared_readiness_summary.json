@@ -1,0 +1,609 @@
+{
+  "generated_at": "2026-04-26 11:25:54",
+  "environment": "grasp_splats",
+  "device": "cpu",
+  "seed": 42,
+  "baseline_checkpoint": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/models/phase2_smoke_baseline/best_policy.pt",
+  "phase2_summary": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/phase2_baseline/phase2_baseline_summary.json",
+  "baseline_target": 0.95,
+  "ready": true,
+  "baseline_eval": {
+    "mean_success_rate": 0.965,
+    "std_success_rate": 0.08674675786448736,
+    "mean_makespan": 18.94,
+    "std_makespan": 10.62903570414551,
+    "n_episodes": 50,
+    "per_episode": [
+      {
+        "episode": 0,
+        "success_rate": 0.75,
+        "makespan": 25,
+        "agents_succeeded": 3,
+        "total_steps": 64
+      },
+      {
+        "episode": 1,
+        "success_rate": 1.0,
+        "makespan": 15,
+        "agents_succeeded": 4,
+        "total_steps": 15
+      },
+      {
+        "episode": 2,
+        "success_rate": 1.0,
+        "makespan": 11,
+        "agents_succeeded": 4,
+        "total_steps": 11
+      },
+      {
+        "episode": 3,
+        "success_rate": 1.0,
+        "makespan": 41,
+        "agents_succeeded": 4,
+        "total_steps": 41
+      },
+      {
+        "episode": 4,
+        "success_rate": 1.0,
+        "makespan": 47,
+        "agents_succeeded": 4,
+        "total_steps": 47
+      },
+      {
+        "episode": 5,
+        "success_rate": 1.0,
+        "makespan": 16,
+        "agents_succeeded": 4,
+        "total_steps": 16
+      },
+      {
+        "episode": 6,
+        "success_rate": 1.0,
+        "makespan": 22,
+        "agents_succeeded": 4,
+        "total_steps": 22
+      },
+      {
+        "episode": 7,
+        "success_rate": 1.0,
+        "makespan": 6,
+        "agents_succeeded": 4,
+        "total_steps": 6
+      },
+      {
+        "episode": 8,
+        "success_rate": 1.0,
+        "makespan": 12,
+        "agents_succeeded": 4,
+        "total_steps": 12
+      },
+      {
+        "episode": 9,
+        "success_rate": 1.0,
+        "makespan": 13,
+        "agents_succeeded": 4,
+        "total_steps": 13
+      },
+      {
+        "episode": 10,
+        "success_rate": 1.0,
+        "makespan": 15,
+        "agents_succeeded": 4,
+        "total_steps": 15
+      },
+      {
+        "episode": 11,
+        "success_rate": 0.75,
+        "makespan": 9,
+        "agents_succeeded": 3,
+        "total_steps": 64
+      },
+      {
+        "episode": 12,
+        "success_rate": 1.0,
+        "makespan": 14,
+        "agents_succeeded": 4,
+        "total_steps": 14
+      },
+      {
+        "episode": 13,
+        "success_rate": 1.0,
+        "makespan": 25,
+        "agents_succeeded": 4,
+        "total_steps": 25
+      },
+      {
+        "episode": 14,
+        "success_rate": 1.0,
+        "makespan": 6,
+        "agents_succeeded": 4,
+        "total_steps": 6
+      },
+      {
+        "episode": 15,
+        "success_rate": 1.0,
+        "makespan": 9,
+        "agents_succeeded": 4,
+        "total_steps": 9
+      },
+      {
+        "episode": 16,
+        "success_rate": 0.75,
+        "makespan": 6,
+        "agents_succeeded": 3,
+        "total_steps": 64
+      },
+      {
+        "episode": 17,
+        "success_rate": 1.0,
+        "makespan": 18,
+        "agents_succeeded": 4,
+        "total_steps": 18
+      },
+      {
+        "episode": 18,
+        "success_rate": 1.0,
+        "makespan": 17,
+        "agents_succeeded": 4,
+        "total_steps": 17
+      },
+      {
+        "episode": 19,
+        "success_rate": 0.75,
+        "makespan": 38,
+        "agents_succeeded": 3,
+        "total_steps": 64
+      },
+      {
+        "episode": 20,
+        "success_rate": 1.0,
+        "makespan": 24,
+        "agents_succeeded": 4,
+        "total_steps": 24
+      },
+      {
+        "episode": 21,
+        "success_rate": 1.0,
+        "makespan": 29,
+        "agents_succeeded": 4,
+        "total_steps": 29
+      },
+      {
+        "episode": 22,
+        "success_rate": 1.0,
+        "makespan": 14,
+        "agents_succeeded": 4,
+        "total_steps": 14
+      },
+      {
+        "episode": 23,
+        "success_rate": 0.75,
+        "makespan": 8,
+        "agents_succeeded": 3,
+        "total_steps": 64
+      },
+      {
+        "episode": 24,
+        "success_rate": 1.0,
+        "makespan": 14,
+        "agents_succeeded": 4,
+        "total_steps": 14
+      },
+      {
+        "episode": 25,
+        "success_rate": 1.0,
+        "makespan": 32,
+        "agents_succeeded": 4,
+        "total_steps": 32
+      },
+      {
+        "episode": 26,
+        "success_rate": 1.0,
+        "makespan": 53,
+        "agents_succeeded": 4,
+        "total_steps": 53
+      },
+      {
+        "episode": 27,
+        "success_rate": 1.0,
+        "makespan": 21,
+        "agents_succeeded": 4,
+        "total_steps": 21
+      },
+      {
+        "episode": 28,
+        "success_rate": 1.0,
+        "makespan": 28,
+        "agents_succeeded": 4,
+        "total_steps": 28
+      },
+      {
+        "episode": 29,
+        "success_rate": 0.75,
+        "makespan": 10,
+        "agents_succeeded": 3,
+        "total_steps": 64
+      },
+      {
+        "episode": 30,
+        "success_rate": 1.0,
+        "makespan": 24,
+        "agents_succeeded": 4,
+        "total_steps": 24
+      },
+      {
+        "episode": 31,
+        "success_rate": 1.0,
+        "makespan": 25,
+        "agents_succeeded": 4,
+        "total_steps": 25
+      },
+      {
+        "episode": 32,
+        "success_rate": 1.0,
+        "makespan": 14,
+        "agents_succeeded": 4,
+        "total_steps": 14
+      },
+      {
+        "episode": 33,
+        "success_rate": 1.0,
+        "makespan": 19,
+        "agents_succeeded": 4,
+        "total_steps": 19
+      },
+      {
+        "episode": 34,
+        "success_rate": 1.0,
+        "makespan": 31,
+        "agents_succeeded": 4,
+        "total_steps": 31
+      },
+      {
+        "episode": 35,
+        "success_rate": 1.0,
+        "makespan": 13,
+        "agents_succeeded": 4,
+        "total_steps": 13
+      },
+      {
+        "episode": 36,
+        "success_rate": 1.0,
+        "makespan": 8,
+        "agents_succeeded": 4,
+        "total_steps": 8
+      },
+      {
+        "episode": 37,
+        "success_rate": 1.0,
+        "makespan": 29,
+        "agents_succeeded": 4,
+        "total_steps": 29
+      },
+      {
+        "episode": 38,
+        "success_rate": 1.0,
+        "makespan": 14,
+        "agents_succeeded": 4,
+        "total_steps": 14
+      },
+      {
+        "episode": 39,
+        "success_rate": 1.0,
+        "makespan": 29,
+        "agents_succeeded": 4,
+        "total_steps": 29
+      },
+      {
+        "episode": 40,
+        "success_rate": 1.0,
+        "makespan": 7,
+        "agents_succeeded": 4,
+        "total_steps": 7
+      },
+      {
+        "episode": 41,
+        "success_rate": 1.0,
+        "makespan": 21,
+        "agents_succeeded": 4,
+        "total_steps": 21
+      },
+      {
+        "episode": 42,
+        "success_rate": 1.0,
+        "makespan": 19,
+        "agents_succeeded": 4,
+        "total_steps": 19
+      },
+      {
+        "episode": 43,
+        "success_rate": 1.0,
+        "makespan": 14,
+        "agents_succeeded": 4,
+        "total_steps": 14
+      },
+      {
+        "episode": 44,
+        "success_rate": 1.0,
+        "makespan": 9,
+        "agents_succeeded": 4,
+        "total_steps": 9
+      },
+      {
+        "episode": 45,
+        "success_rate": 1.0,
+        "makespan": 9,
+        "agents_succeeded": 4,
+        "total_steps": 9
+      },
+      {
+        "episode": 46,
+        "success_rate": 1.0,
+        "makespan": 9,
+        "agents_succeeded": 4,
+        "total_steps": 9
+      },
+      {
+        "episode": 47,
+        "success_rate": 1.0,
+        "makespan": 21,
+        "agents_succeeded": 4,
+        "total_steps": 21
+      },
+      {
+        "episode": 48,
+        "success_rate": 0.75,
+        "makespan": 9,
+        "agents_succeeded": 3,
+        "total_steps": 64
+      },
+      {
+        "episode": 49,
+        "success_rate": 1.0,
+        "makespan": 25,
+        "agents_succeeded": 4,
+        "total_steps": 25
+      }
+    ]
+  },
+  "attack_bound_checks": {
+    "random": {
+      "epsilon": 0.15,
+      "max_abs_delta": 0.14794588088989258,
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "inside_epsilon": true,
+      "inside_value_range": true
+    },
+    "fgsm": {
+      "epsilon": 0.15,
+      "max_abs_delta": 0.15000000596046448,
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "inside_epsilon": true,
+      "inside_value_range": true
+    },
+    "pgd": {
+      "epsilon": 0.15,
+      "max_abs_delta": 0.15000000596046448,
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "inside_epsilon": true,
+      "inside_value_range": true
+    },
+    "partial_fgsm_50": {
+      "epsilon": 0.15,
+      "max_abs_delta": 0.15000000596046448,
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "inside_epsilon": true,
+      "inside_value_range": true
+    }
+  },
+  "adversary_checks": {
+    "start": [
+      5,
+      1
+    ],
+    "goal": [
+      1,
+      5
+    ],
+    "astar_action": 1,
+    "bfs_action": 1,
+    "astar_next_cell": [
+      4,
+      1
+    ],
+    "bfs_next_cell": [
+      4,
+      1
+    ],
+    "astar_valid": true,
+    "bfs_valid": true
+  },
+  "fragility": {
+    "random": [
+      {
+        "epsilon": 0.0,
+        "attack": "random",
+        "success_rate": 1.0,
+        "std_success_rate": 0.0,
+        "makespan": 25.625
+      },
+      {
+        "epsilon": 0.05,
+        "attack": "random",
+        "success_rate": 0.96875,
+        "std_success_rate": 0.08267972847076846,
+        "makespan": 21.375
+      },
+      {
+        "epsilon": 0.1,
+        "attack": "random",
+        "success_rate": 0.9375,
+        "std_success_rate": 0.10825317547305482,
+        "makespan": 20.875
+      },
+      {
+        "epsilon": 0.15,
+        "attack": "random",
+        "success_rate": 0.96875,
+        "std_success_rate": 0.08267972847076846,
+        "makespan": 26.625
+      },
+      {
+        "epsilon": 0.2,
+        "attack": "random",
+        "success_rate": 0.96875,
+        "std_success_rate": 0.08267972847076846,
+        "makespan": 21.875
+      },
+      {
+        "epsilon": 0.3,
+        "attack": "random",
+        "success_rate": 0.84375,
+        "std_success_rate": 0.21423920626253262,
+        "makespan": 17.5
+      }
+    ],
+    "fgsm": [
+      {
+        "epsilon": 0.0,
+        "attack": "fgsm",
+        "success_rate": 1.0,
+        "std_success_rate": 0.0,
+        "makespan": 16.375
+      },
+      {
+        "epsilon": 0.05,
+        "attack": "fgsm",
+        "success_rate": 0.9375,
+        "std_success_rate": 0.10825317547305482,
+        "makespan": 32.125
+      },
+      {
+        "epsilon": 0.1,
+        "attack": "fgsm",
+        "success_rate": 0.65625,
+        "std_success_rate": 0.17399263633843817,
+        "makespan": 24.875
+      },
+      {
+        "epsilon": 0.15,
+        "attack": "fgsm",
+        "success_rate": 0.25,
+        "std_success_rate": 0.125,
+        "makespan": 23.0
+      },
+      {
+        "epsilon": 0.2,
+        "attack": "fgsm",
+        "success_rate": 0.0625,
+        "std_success_rate": 0.10825317547305482,
+        "makespan": 49.5
+      },
+      {
+        "epsilon": 0.3,
+        "attack": "fgsm",
+        "success_rate": 0.0,
+        "std_success_rate": 0.0,
+        "makespan": 64.0
+      }
+    ],
+    "pgd": [
+      {
+        "epsilon": 0.0,
+        "attack": "pgd",
+        "success_rate": 0.9375,
+        "std_success_rate": 0.10825317547305482,
+        "makespan": 24.0
+      },
+      {
+        "epsilon": 0.1,
+        "attack": "pgd",
+        "success_rate": 0.875,
+        "std_success_rate": 0.125,
+        "makespan": 20.5
+      },
+      {
+        "epsilon": 0.2,
+        "attack": "pgd",
+        "success_rate": 0.5625,
+        "std_success_rate": 0.10825317547305482,
+        "makespan": 34.25
+      },
+      {
+        "epsilon": 0.3,
+        "attack": "pgd",
+        "success_rate": 0.25,
+        "std_success_rate": 0.0,
+        "makespan": 17.0
+      }
+    ]
+  },
+  "partial_attack": [
+    {
+      "fraction": 0.0,
+      "success_rate": 0.96875,
+      "std_success_rate": 0.08267972847076846,
+      "makespan": 22.625
+    },
+    {
+      "fraction": 0.25,
+      "success_rate": 0.96875,
+      "std_success_rate": 0.08267972847076846,
+      "makespan": 24.875
+    },
+    {
+      "fraction": 0.5,
+      "success_rate": 0.8125,
+      "std_success_rate": 0.16535945694153692,
+      "makespan": 29.375
+    },
+    {
+      "fraction": 1.0,
+      "success_rate": 0.375,
+      "std_success_rate": 0.21650635094610965,
+      "makespan": 30.125
+    }
+  ],
+  "physical_adversary": [
+    {
+      "n_adversary": 0,
+      "success_rate": 0.96875,
+      "std_success_rate": 0.08267972847076846,
+      "makespan": 32.75
+    },
+    {
+      "n_adversary": 1,
+      "success_rate": 0.96875,
+      "std_success_rate": 0.08267972847076846,
+      "makespan": 27.75
+    },
+    {
+      "n_adversary": 2,
+      "success_rate": 0.90625,
+      "std_success_rate": 0.12103072956898178,
+      "makespan": 23.875
+    }
+  ],
+  "physical_preview": {
+    "frames": 41,
+    "success_count": 4,
+    "n_social": 4,
+    "n_adversary": 2,
+    "path": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/shared_readiness/shared_physical_chaser_preview.gif"
+  },
+  "files": {
+    "attack_panel_png": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/shared_readiness/shared_attack_observation_panel.png",
+    "fragility_png": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/shared_readiness/shared_baseline_fragility.png",
+    "partial_png": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/shared_readiness/shared_partial_attack.png",
+    "physical_png": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/shared_readiness/shared_physical_adversary.png",
+    "physical_gif": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/shared_readiness/shared_physical_chaser_preview.gif",
+    "summary_json": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/shared_readiness/shared_readiness_summary.json",
+    "baseline_handoff_md": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/BASELINE_WRAPPER_HANDOFF.md",
+    "handoff_md": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/SHARED_TEAM_HANDOFF.md",
+    "report_html": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/shared_readiness/shared_readiness_report.html"
+  }
+}

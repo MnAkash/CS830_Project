@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shared Readiness Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 28px; background: #f6f8fb; color: #17202a; }
+    .card { background: white; border: 1px solid #dde3ee; border-radius: 12px; padding: 18px; margin: 16px 0; box-shadow: 0 2px 8px rgba(20, 30, 50, 0.06); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 18px; align-items: start; }
+    img { max-width: 100%; border: 1px solid #d4dbe8; border-radius: 10px; background: white; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border-bottom: 1px solid #e5e9f2; padding: 8px; text-align: left; }
+    code { background: #eef2f7; padding: 2px 5px; border-radius: 5px; }
+    .ok { color: #087f23; font-weight: 700; }
+    .bad { color: #b91c1c; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Shared Readiness Report</h1>
+  <p>Generated at 2026-04-26 11:25:54 using <code>grasp_splats</code>.</p>
+
+  <div class="card">
+    <h2>Status</h2>
+    <p class="ok">Baseline + wrapper are ready for Riad, Akash, and Sujosh to build their own parts on top.</p>
+    <p>Baseline success: <b>96.5%</b> over 50 held-out sanity episodes.</p>
+    <p>Baseline checkpoint: <code>/home/carl_ma/Riad/MS/CS830/project/shared_baseline/models/phase2_smoke_baseline/best_policy.pt</code></p>
+  </div>
+
+  <div class="card">
+    <h2>Attack bound checks</h2>
+    <table>
+      <tr><th>Attack</th><th>Max |delta|</th><th>Inside epsilon?</th><th>Inside [0, 1]?</th></tr>
+      <tr><td>random</td><td>0.1479</td><td>True</td><td>True</td></tr><tr><td>fgsm</td><td>0.1500</td><td>True</td><td>True</td></tr><tr><td>pgd</td><td>0.1500</td><td>True</td><td>True</td></tr><tr><td>partial_fgsm_50</td><td>0.1500</td><td>True</td><td>True</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Visual outputs</h2>
+    <div class="grid">
+      <div><h3>Observation attack panel</h3><img src="shared_attack_observation_panel.png" alt="Attack panel"></div>
+      <div><h3>Random / FGSM / PGD fragility</h3><img src="shared_baseline_fragility.png" alt="Fragility plot"></div>
+      <div><h3>Partial FGSM sweep</h3><img src="shared_partial_attack.png" alt="Partial attack plot"></div>
+      <div><h3>Physical A* chaser sweep</h3><img src="shared_physical_adversary.png" alt="Physical attack plot"></div>
+      <div><h3>A* chaser GIF</h3><img src="shared_physical_chaser_preview.gif" alt="Physical chaser gif"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Handoff</h2>
+    <p>Raw JSON: <code>shared_readiness_summary.json</code></p>
+        <p>Baseline/wrapper guide: <code>BASELINE_WRAPPER_HANDOFF.md</code></p>
+    <p>Markdown handoff: <code>SHARED_TEAM_HANDOFF.md</code></p>
+    <p>All three future tracks should build on this same baseline checkpoint, wrapper, and evaluation code.</p>
+  </div>
+</body>
+</html>

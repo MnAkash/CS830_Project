@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Phase 2 Baseline PPO Preview</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 28px; background: #f6f8fb; color: #17202a; }
+    .card { background: white; border: 1px solid #dde3ee; border-radius: 12px; padding: 18px; margin: 16px 0; box-shadow: 0 2px 8px rgba(20, 30, 50, 0.06); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 18px; align-items: start; }
+    img { max-width: 100%; border: 1px solid #d4dbe8; border-radius: 10px; background: white; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border-bottom: 1px solid #e5e9f2; padding: 8px; text-align: left; }
+    code { background: #eef2f7; padding: 2px 5px; border-radius: 5px; }
+    .ok { color: #087f23; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Phase 2 Baseline PPO Preview</h1>
+  <p>Generated at 2026-04-26 10:53:42 using <code>grasp_splats</code>.</p>
+
+  <div class="card">
+    <h2>What this phase implements</h2>
+    <p>Phase 2 adds the baseline PPO policy: a shared CNN actor-critic, rollout buffer, clipped PPO update, checkpoint saving, clean evaluation, and visual inspection of a policy rollout.</p>
+    <p class="ok">Status: smoke training completed. This is a wiring check, not the final Main run.</p>
+  </div>
+
+  <div class="card">
+    <h2>Smoke training configuration</h2>
+    <table>
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>Agents</td><td>4</td></tr>
+      <tr><td>Map size</td><td>8×8</td></tr>
+      <tr><td>Obstacle density</td><td>0.1</td></tr>
+      <tr><td>Max steps</td><td>64</td></tr>
+    <tr><td>Total training timesteps</td><td>65536</td></tr>
+    <tr><td>Evaluation mode</td><td>sampled PPO policy (deterministic=False)</td></tr>
+    <tr><td>Success target</td><td>0.95 (met)</td></tr>
+    <tr><td>Evaluation success rate</td><td>0.965</td></tr>
+      <tr><td>Evaluation makespan</td><td>16.8</td></tr>
+      <tr><td>Rollout success count</td><td>4 / 4</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Visual feedback</h2>
+    <div class="grid">
+      <div><h3>Policy architecture</h3><img src="phase2_policy_architecture.png" alt="Policy architecture"></div>
+      <div><h3>Training curves</h3><img src="phase2_training_curves.png" alt="Training curves"></div>
+      <div><h3>Policy rollout GIF</h3><img src="phase2_policy_rollout.gif" alt="Policy rollout"></div>
+      <div><h3>Action histogram</h3><img src="phase2_action_histogram.png" alt="Action histogram"></div>
+      <div><h3>Initial state</h3><img src="phase2_initial_state.png" alt="Initial state"></div>
+      <div><h3>Final state</h3><img src="phase2_final_state.png" alt="Final state"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Feedback request</h2>
+    <p>Please inspect the architecture diagram, training curves, and rollout GIF. This run now uses enough smoke-training steps to reach the near-100% baseline target on the easy sanity environment. If this looks right, the next step is to run the longer Quick baseline, then the Main baseline.</p>
+    <p>Raw data: <code>phase2_baseline_summary.json</code>. Checkpoint: <code>/home/carl_ma/Riad/MS/CS830/project/models/phase2_smoke_baseline/final_policy.pt</code>.</p>
+  </div>
+</body>
+</html>

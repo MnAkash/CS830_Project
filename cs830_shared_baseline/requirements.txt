@@ -1,0 +1,7 @@
+numpy
+torch
+pogema
+gymnasium
+matplotlib
+imageio
+tqdm

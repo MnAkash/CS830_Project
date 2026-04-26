@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Phase 1 Environment Wrapper Preview</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 28px; background: #f6f8fb; color: #17202a; }
+    h1, h2 { margin-bottom: 0.35rem; }
+    .card { background: white; border: 1px solid #dde3ee; border-radius: 12px; padding: 18px; margin: 16px 0; box-shadow: 0 2px 8px rgba(20, 30, 50, 0.06); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; align-items: start; }
+    img { max-width: 100%; border: 1px solid #d4dbe8; border-radius: 10px; background: white; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border-bottom: 1px solid #e5e9f2; padding: 8px; text-align: left; }
+    code { background: #eef2f7; padding: 2px 5px; border-radius: 5px; }
+    .ok { color: #087f23; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Phase 1 Environment Wrapper Preview</h1>
+  <p>Generated at 2026-04-26 11:24:16 using the <code>grasp_splats</code> conda environment.</p>
+
+  <div class="card">
+    <h2>What this implements</h2>
+    <p>The Phase 1 wrapper creates named POGEMA configurations, returns consistent observation tensors, exposes grid state for debugging, and can run reproducible random-action rollouts.</p>
+    <p class="ok">Status: wrapper test and visualization generation completed.</p>
+  </div>
+
+  <div class="card">
+    <h2>Configuration used for this preview</h2>
+    <table>
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>Name</td><td>quick</td></tr>
+      <tr><td>Agents</td><td>8</td></tr>
+    <tr><td>Requested map size</td><td>16×16</td></tr>
+    <tr><td>Rendered grid with POGEMA padding</td><td>[20, 20]</td></tr>
+      <tr><td>Obstacle density</td><td>0.3</td></tr>
+      <tr><td>Observation shape</td><td>[8, 3, 5, 5]</td></tr>
+      <tr><td>Seed</td><td>7</td></tr>
+      <tr><td>Random rollout steps</td><td>32</td></tr>
+      <tr><td>Mean random-policy reward</td><td>0.000</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Visual feedback</h2>
+    <div class="grid">
+      <div><h3>Initial state</h3><img src="phase1_initial_state.png" alt="Initial grid state"></div>
+      <div><h3>Random rollout GIF</h3><img src="phase1_random_rollout.gif" alt="Random rollout animation"></div>
+      <div><h3>Final state</h3><img src="phase1_final_state.png" alt="Final grid state"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How to give feedback</h2>
+    <p>Open this report and check whether the grid, obstacles, agents, goals, and trajectories are understandable. Raw numbers are in <code>phase1_environment_summary.json</code>.</p>
+  </div>
+</body>
+</html>
