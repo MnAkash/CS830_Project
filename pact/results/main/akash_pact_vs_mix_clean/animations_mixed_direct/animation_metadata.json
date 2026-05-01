@@ -1,0 +1,13 @@
+{
+  "seed": 1001,
+  "strategy": "mixed",
+  "scores": {
+    "baseline": 4,
+    "pact": 7,
+    "pact_mix": 7
+  },
+  "files": [
+    "final_frame_threeway_direct.png",
+    "comparison_mixed_threeway_direct.gif"
+  ]
+}

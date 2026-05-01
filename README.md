@@ -1,74 +1,110 @@
-# Shared Baseline + Wrapper Package
+# PACT: Physical-Adversary Curriculum Training for Robust Multi-Agent Pathfinding
 
-This folder is the clean handoff package for Riad, Akash, and Sujosh.
+This repository contains Moniruzzaman Akash's CS 830 project on making multi-agent pathfinding policies more robust to physical, non-cooperative agents. The project builds on a shared POGEMA/PPO baseline and adds PACT, a curriculum-training approach where social agents learn while adversaries occupy the same grid, chase agents, block goals, and create congestion.
 
-It contains the shared MAPF foundation only:
+The main idea is simple: a MAPF policy should not only work in clean cooperative worlds. It should keep moving agents to their goals when other agents physically interfere with the plan.
 
-- POGEMA environment wrapper
-- PPO baseline policy code
-- verified baseline checkpoint
-- shared attack/evaluation utilities
-- visual validation reports
-- handoff documentation
+## Highlights
 
-It does **not** implement Riad's, Akash's, or Sujosh's defence systems. Each member should build their part on top of this package.
+- Implements physical adversary agents for POGEMA MAPF environments.
+- Trains PACT from the shared PPO baseline using adversarial curriculum learning.
+- Evaluates PACT and PACT-Mix against A* pursuit, random walk, goal blocking, and mixed adversaries.
+- Keeps Akash-specific code, models, results, plots, and GIFs under `pact/`.
+- Preserves the shared baseline as a reusable dependency under `cs830_shared_baseline/`.
 
----
-
-## 1. Folder layout
+## Project Structure
 
 ```text
-shared_baseline/
-├── README.md
-├── requirements.txt
-├── BASELINE_WRAPPER_HANDOFF.md
-├── SHARED_TEAM_HANDOFF.md
-├── PROJECT_CONTEXT.md
-├── FULL_IMPLEMENTATION_PLAN.md
-├── src/
-│   ├── pogema_wrapper.py
-│   ├── ppo_mapf.py
-│   ├── utils.py
-│   ├── attacks.py
-│   ├── adversary.py
-│   ├── evaluate_fragility.py
-│   ├── visualize.py
-│   ├── phase1_visualize.py
-│   ├── phase2_train_baseline.py
-│   ├── shared_readiness.py
-│   └── test_pogema.py
-├── models/
-│   └── phase2_smoke_baseline/
-│       ├── best_policy.pt
-│       ├── final_policy.pt
-│       └── training_history.json
-└── results/
-    ├── phase1_environment/
-    ├── phase2_baseline/
-    └── shared_readiness/
+.
++-- README.md                         # Project-facing README
++-- pact/                             # Akash's PACT implementation and artifacts
+|   +-- curriculum_train.py           # Train/evaluate PACT and PACT-Mix style curricula
+|   +-- adversary.py                  # A*, random walk, goal blocking, mixed adversaries
+|   +-- ppo_mapf.py                   # PACT-local PPO trainer/evaluator
+|   +-- evaluate_fragility.py         # PACT-local robustness sweeps
+|   +-- visualize.py                  # Rollout GIF generation
+|   +-- models/                       # PACT checkpoints
+|   +-- results/                      # PACT plots, JSON summaries, GIFs, CSVs
++-- cs830_shared_baseline/            # Shared baseline package and original handoff README
+|   +-- README.md
+|   +-- requirements.txt
+|   +-- src/
+|   +-- models/phase2_smoke_baseline/
+|   +-- results/
++-- final_paper/                      # Paper materials
++-- poster/                           # Poster materials
 ```
 
-Run commands from inside this folder unless stated otherwise.
+## Method at a Glance
 
----
+PACT starts from the shared PPO baseline checkpoint and continues training under physical adversary pressure. The social agents still use one shared PPO policy, but extra adversary agents are inserted into the grid and controlled by handcrafted physical behaviors.
 
-## 2. Environment setup
+| Component | Role |
+| --- | --- |
+| Baseline PPO | Shared clean MAPF policy used as the starting point |
+| PACT | Curriculum training with increasing A* pursuit adversaries |
+| PACT-Mix | Continued training from PACT with mixed adversary behavior |
+| Physical adversaries | Grid agents that chase, wander, block goals, or mix strategies |
+| Evaluation | Sweeps over adversary count, adversary type, and observation noise |
 
-Use the verified conda environment:
+## Headline Results
+
+The table below reports success rate with four physical adversaries. Higher is better.
+
+| Physical adversary type | Baseline | PACT | PACT-Mix |
+| --- | ---: | ---: | ---: |
+| Random movement | 59.6% | 74.2% | 75.0% |
+| Goal blocking | 39.2% | 47.9% | 48.8% |
+| A* pursuit | 52.9% | 69.6% | 67.5% |
+| Mixed adversary | 60.4% | 72.1% | 76.2% |
+| Mean across types | 53.0% | 65.9% | 66.9% |
+
+Key takeaway: PACT improves directed A* pursuit robustness, while PACT-Mix gives the best broad average across adversary types.
+
+## Visual Results
+
+### Training Dynamics
+
+PACT first adapts under an A* pursuit curriculum, then the mixed variant continues with broader physical pressure.
+
+![PACT and PACT-Mix training curves](pact/results/main/akash_pact_vs_mix_clean/curriculum_training_pact_mix_direct.png)
+
+### Physical Robustness Sweep
+
+Success rate is measured as the number of physical adversaries increases.
+
+![Physical robustness comparison](pact/results/main/akash_pact_vs_mix_clean/physical_robustness_three_policy.png)
+
+### Cross-Adversary Generalization
+
+PACT-Mix is designed to generalize beyond a single adversary behavior.
+
+![Cross-adversary comparison](pact/results/main/akash_pact_vs_mix_clean/mixed_adversary_type_comparison_three_policy.png)
+
+### Representative Rollout
+
+A matched mixed-adversary rollout shows how the robust policies keep more agents moving toward goals under congestion.
+
+![Final frame comparison](pact/results/main/akash_pact_vs_mix_clean/animations_mixed_direct/final_frame_threeway_direct.png)
+
+### Animation
+
+The GIF below compares policies in the same mixed physical-adversary setting.
+
+![Mixed adversary rollout comparison](pact/results/main/akash_pact_vs_mix_clean/animations_mixed_direct/comparison_mixed_threeway_direct.gif)
+
+## Installation
+
+Run these commands from the repository root.
 
 ```bash
-source /home/carl_ma/miniconda3/etc/profile.d/conda.sh
-conda activate grasp_splats
-cd /home/carl_ma/Riad/MS/CS830/project/shared_baseline
+cd path/to/cs830_final_project
+python -m venv .venv
+source .venv/bin/activate
+pip install -r cs830_shared_baseline/requirements.txt
 ```
 
-If another machine does not already have the packages, install:
-
-```bash
-pip install -r requirements.txt
-```
-
-Required packages:
+The project was developed with Python 3.12 and uses:
 
 - numpy
 - torch
@@ -78,333 +114,90 @@ Required packages:
 - imageio
 - tqdm
 
----
+If PyTorch installation needs a CUDA-specific wheel on your machine, install the matching PyTorch build first, then install the remaining requirements.
 
-## 3. Verified baseline checkpoint
+## Quick Start
 
-Use this checkpoint as the common starting point for all three members:
-
-```text
-models/phase2_smoke_baseline/best_policy.pt
-```
-
-Validation result:
-
-- environment: 4 agents, 8×8 grid, obstacle density 0.1, 64 max steps
-- policy evaluation mode: sampled PPO policy
-- success rate: **96.5%** over 50 held-out sanity episodes
-- readiness status: `ready = true`
-
-Do not replace this checkpoint unless all three team members agree, because otherwise defence comparisons will not be fair.
-
----
-
-## 4. Core system pieces
-
-### 4.1 POGEMA wrapper
-
-File:
-
-```text
-src/pogema_wrapper.py
-```
-
-Main interface:
-
-- `MapfConfig`: project-level environment configuration
-- `QUICK_CONFIG`: 8 agents, 16×16 grid, 128 steps
-- `MAIN_CONFIG`: 16 agents, 20×20 grid, 192 steps
-- `SCALE_CONFIG`: 32 agents, 32×32 grid, 256 steps
-- `MultiAgentPogemaEnv`: wrapper around POGEMA
-- `make_pogema_env(config)`: environment factory
-
-Important wrapper methods:
-
-- `reset(seed=None)`: returns observation batch
-- `step(actions)`: takes one action per agent
-- `sample_actions()`: random action batch for debugging
-- `get_agent_positions()`: current agent positions
-- `get_goal_positions()`: current goal positions
-- `get_obstacles()`: obstacle grid
-- `get_state()`: full visualization/debug state
-
-Observation shape for `obs_radius=2`:
-
-```text
-(num_agents, 3, 5, 5)
-```
-
-Channels:
-
-1. obstacles
-2. nearby agents
-3. goal direction
-
-### 4.2 PPO baseline
-
-File:
-
-```text
-src/ppo_mapf.py
-```
-
-Main interface:
-
-- `PolicyNetwork`: shared CNN actor-critic policy
-- `RolloutBuffer`: PPO rollout storage
-- `PPOTrainer`: baseline PPO trainer
-- `evaluate_policy(policy, grid_config, ...)`: clean evaluation
-
-Architecture:
-
-- CNN encoder over 3×5×5 observations
-- actor head outputs 5 action logits
-- critic head outputs a value estimate
-- one shared policy is used by all agents
-
-Action space:
-
-```text
-0 = stay
-1 = up
-2 = down
-3 = left
-4 = right
-```
-
-### 4.3 Attack/evaluation utilities
-
-These utilities are included so future defences can be evaluated consistently.
-
-They are not defence implementations.
-
-Files:
-
-```text
-src/attacks.py
-src/adversary.py
-src/evaluate_fragility.py
-src/visualize.py
-```
-
-Available observation attacks:
-
-- `random_noise_attack()`
-- `fgsm_attack()`
-- `pgd_attack()`
-- `partial_attack()`
-
-Available physical adversary helpers:
-
-- `astar_next_step()`
-- `bfs_next_step()`
-- `adversary_actions()`
-
-Available evaluation sweeps:
-
-- `run_fragility_sweep()`
-- `run_partial_attack_sweep()`
-- `run_physical_attack_sweep()`
-- `plot_fragility()`
-- `plot_partial()`
-- `plot_physical_comparison()`
-
----
-
-## 5. How to run validation
-
-### 5.1 Test the wrapper
+### 1. Evaluate an Existing PACT Checkpoint
 
 ```bash
-python src/test_pogema.py
+python pact/curriculum_train.py \
+  --mode evaluate \
+  --config quick \
+  --akash-checkpoint pact/models/quick_akash_curriculum/best_policy.pt \
+  --results-dir /tmp/pact_eval \
+  --eval-episodes 10 \
+  --device cpu
 ```
 
-This checks:
-
-- named configs
-- reset/step API
-- seed reproducibility
-- phase-1 visual report generation
-
-Outputs:
-
-```text
-results/phase1_environment/
-```
-
-### 5.2 Re-run baseline training/report
-
-Use this only if the baseline must be retrained:
+### 2. Evaluate PACT-Mix Under Mixed Adversaries
 
 ```bash
-python src/phase2_train_baseline.py --device cpu --total-timesteps 65536 --eval-episodes 50 --success-target 0.95
+python pact/curriculum_train.py \
+  --mode evaluate \
+  --config quick \
+  --akash-checkpoint pact/models/quick_pact_mix_from_pact/best_policy.pt \
+  --adversary-strategy mixed \
+  --results-dir /tmp/pact_mix_eval \
+  --eval-episodes 10 \
+  --device cpu
 ```
 
-Outputs:
+### 3. Run a Small Smoke Training Job
 
-```text
-models/phase2_smoke_baseline/
-results/phase2_baseline/
-```
-
-Expected sanity target:
-
-```text
-success rate >= 95%
-```
-
-### 5.3 Re-run shared readiness check
+This is useful for checking that the environment, baseline checkpoint, and PACT code are wired correctly.
 
 ```bash
-python src/shared_readiness.py --device cpu --episodes 8
+python pact/curriculum_train.py \
+  --mode full \
+  --config smoke \
+  --total-timesteps 4096 \
+  --n-steps 128 \
+  --batch-size 128 \
+  --save-dir /tmp/pact_smoke_models \
+  --results-dir /tmp/pact_smoke_results \
+  --device cpu
 ```
 
-This checks:
+### 4. Generate a Rollout GIF
 
-- baseline checkpoint loads correctly
-- baseline success is at least 95% on the easy sanity environment
-- random/FGSM/PGD/partial-FGSM attacks stay inside epsilon bounds
-- A* and BFS chaser logic works
-- fragility plots are generated
-- physical chaser GIF is generated
-
-Outputs:
-
-```text
-results/shared_readiness/shared_readiness_report.html
-results/shared_readiness/shared_readiness_summary.json
-results/shared_readiness/shared_attack_observation_panel.png
-results/shared_readiness/shared_baseline_fragility.png
-results/shared_readiness/shared_partial_attack.png
-results/shared_readiness/shared_physical_adversary.png
-results/shared_readiness/shared_physical_chaser_preview.gif
+```bash
+python pact/visualize.py \
+  --robust-model pact/models/quick_akash_curriculum/final_policy.pt \
+  --output-dir pact/results/animations \
+  --adversary-strategy astar_pursuit \
+  --physical-only \
+  --device cpu
 ```
 
----
+## Important Artifacts
 
-## 6. How each team member should build on top
+| Artifact | Path |
+| --- | --- |
+| Shared baseline checkpoint | `cs830_shared_baseline/models/phase2_smoke_baseline/best_policy.pt` |
+| PACT checkpoint | `pact/models/quick_akash_curriculum/best_policy.pt` |
+| PACT-Mix checkpoint | `pact/models/quick_pact_mix_from_pact/best_policy.pt` |
+| Main three-policy summary | `pact/results/main/akash_pact_vs_mix_clean/pact_vs_mix_summary.json` |
+| Physical robustness plot | `pact/results/main/akash_pact_vs_mix_clean/physical_robustness_three_policy.png` |
+| Cross-adversary plot | `pact/results/main/akash_pact_vs_mix_clean/mixed_adversary_type_comparison_three_policy.png` |
+| Mixed rollout GIF | `pact/results/main/akash_pact_vs_mix_clean/animations_mixed_direct/comparison_mixed_threeway_direct.gif` |
+| Paper bundle CSVs | `pact/results/main/akash_paper_bundle/` |
 
-### 6.1 Riad: adversarial training defence
+## Reproducibility Notes
 
-Riad should build training-time robustness on top of the shared PPO baseline.
+- PACT-owned code and generated artifacts live under `pact/`.
+- The shared baseline remains under `cs830_shared_baseline/` and is used as a dependency and reference checkpoint source.
+- The baseline checkpoint is intentionally not overwritten by PACT training.
+- New training/evaluation outputs should be written to `pact/models/`, `pact/results/`, or a temporary path such as `/tmp/...` for quick checks.
 
-Recommended starting files:
+## Scope and Limitations
 
-```text
-src/ppo_mapf.py
-src/attacks.py
-src/evaluate_fragility.py
-models/phase2_smoke_baseline/best_policy.pt
-```
+This project focuses on physical adversary robustness: adversaries change the grid by occupying cells, chasing agents, blocking goals, and creating congestion. FGSM observation-noise sweeps are included as a cross-robustness check, but digital observation robustness is not the main claim.
 
-Suggested new file name:
+The strongest conclusion is that physical curriculum training improves robustness to physical MAPF interference, especially when the adversary distribution at evaluation resembles the physical pressures seen during training.
 
-```text
-src/riad_adv_training.py
-```
+## Author
 
-Do not change the shared `PolicyNetwork` API unless all members agree.
-
-### 6.2 Akash: curriculum / physical-adversary defence
-
-Akash should build environment-side robustness on top of the wrapper and A* adversary utilities.
-
-Recommended starting files:
-
-```text
-src/pogema_wrapper.py
-src/ppo_mapf.py
-src/adversary.py
-src/evaluate_fragility.py
-models/phase2_smoke_baseline/best_policy.pt
-```
-
-Suggested new file name:
-
-```text
-src/akash_curriculum_training.py
-```
-
-Do not change the wrapper return shapes or action mapping unless all members agree.
-
-### 6.3 Sujosh: inference-time smoothing defence
-
-Sujosh should build an inference wrapper around the trained policy.
-
-Recommended starting files:
-
-```text
-src/ppo_mapf.py
-src/attacks.py
-src/evaluate_fragility.py
-models/phase2_smoke_baseline/best_policy.pt
-```
-
-Suggested new file name:
-
-```text
-src/sujosh_smoothing.py
-```
-
-This part should not require retraining the baseline policy.
-
----
-
-## 7. Minimal policy-loading example
-
-```python
-from pathlib import Path
-
-import torch
-
-from ppo_mapf import PolicyNetwork
-
-
-checkpoint = Path("models/phase2_smoke_baseline/best_policy.pt")
-policy = PolicyNetwork(obs_size=5)
-policy.load_state_dict(torch.load(checkpoint, map_location="cpu", weights_only=True))
-policy.eval()
-```
-
-When running a new script inside `src/`, use:
-
-```python
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-```
-
----
-
-## 8. Fair comparison rules
-
-All members should keep these fixed unless the full team agrees:
-
-- baseline checkpoint
-- action mapping
-- observation shape
-- wrapper API
-- attack definitions
-- evaluation seeds/configs
-- success-rate metric
-
-Each defence can add its own training or inference logic, but final comparisons should be run with the shared evaluation utilities.
-
----
-
-## 9. Reports for visual understanding
-
-Open these files in a browser:
-
-```text
-results/phase1_environment/phase1_environment_report.html
-results/phase2_baseline/phase2_baseline_report.html
-results/shared_readiness/shared_readiness_report.html
-```
-
-They show:
-
-- the wrapper/environment behavior
-- the PPO baseline training result
-- attack sensitivity and physical-adversary sanity checks
+Moniruzzaman Akash  
+CS 830: Artificial Intelligence  
+University of New Hampshire

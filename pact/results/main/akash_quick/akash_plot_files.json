@@ -1,0 +1,4 @@
+{
+  "physical_plot": "results/main/akash_quick/akash_physical_comparison.png",
+  "fgsm_plot": "results/main/akash_quick/akash_fgsm_comparison.png"
+}

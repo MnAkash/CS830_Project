@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26 11:24:16",
+  "generated_at": "2026-04-26 16:15:40",
   "environment": "grasp_splats",
   "seed": 7,
   "config": {
@@ -131,10 +131,10 @@
     "done_count": 0
   },
   "files": {
-    "initial_png": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/phase1_environment/phase1_initial_state.png",
-    "final_png": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/phase1_environment/phase1_final_state.png",
-    "rollout_gif": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/phase1_environment/phase1_random_rollout.gif",
-    "summary_json": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/phase1_environment/phase1_environment_summary.json",
-    "report_html": "/home/carl_ma/Riad/MS/CS830/project/shared_baseline/results/phase1_environment/phase1_environment_report.html"
+    "initial_png": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/results/phase1_environment/phase1_initial_state.png",
+    "final_png": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/results/phase1_environment/phase1_final_state.png",
+    "rollout_gif": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/results/phase1_environment/phase1_random_rollout.gif",
+    "summary_json": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/results/phase1_environment/phase1_environment_summary.json",
+    "report_html": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/results/phase1_environment/phase1_environment_report.html"
   }
 }

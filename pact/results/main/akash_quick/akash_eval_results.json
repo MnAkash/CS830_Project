@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-04-26 18:26:55",
+  "config_name": "quick",
+  "grid_config": {
+    "num_agents": 8,
+    "size": 16,
+    "density": 0.3,
+    "obs_radius": 2,
+    "max_episode_steps": 128,
+    "seed": 42,
+    "on_target": "finish"
+  },
+  "seed": 42,
+  "device": "cpu",
+  "eval_episodes": 30,
+  "adversary_strategy": "astar_pursuit",
+  "baseline_checkpoint": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/models/phase2_smoke_baseline/best_policy.pt",
+  "akash_checkpoint": "models/quick_akash_curriculum/best_policy.pt",
+  "physical": {
+    "baseline": [
+      {
+        "n_adversary": 0,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.6458333333333334,
+        "std_success_rate": 0.17405498811837852,
+        "makespan": 75.2
+      },
+      {
+        "n_adversary": 1,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.5958333333333333,
+        "std_success_rate": 0.20331454831259752,
+        "makespan": 66.73333333333333
+      },
+      {
+        "n_adversary": 2,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.6,
+        "std_success_rate": 0.15942605391424158,
+        "makespan": 80.76666666666667
+      },
+      {
+        "n_adversary": 4,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.525,
+        "std_success_rate": 0.16894279110594412,
+        "makespan": 63.9
+      }
+    ],
+    "akash_curriculum": [
+      {
+        "n_adversary": 0,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.7083333333333334,
+        "std_success_rate": 0.20749832663314552,
+        "makespan": 41.96666666666667
+      },
+      {
+        "n_adversary": 1,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.7291666666666666,
+        "std_success_rate": 0.20177166688005418,
+        "makespan": 48.0
+      },
+      {
+        "n_adversary": 2,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.7083333333333334,
+        "std_success_rate": 0.18633899812498245,
+        "makespan": 46.233333333333334
+      },
+      {
+        "n_adversary": 4,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.6958333333333333,
+        "std_success_rate": 0.17285390427242947,
+        "makespan": 55.13333333333333
+      }
+    ]
+  },
+  "fgsm": {
+    "baseline": [
+      {
+        "epsilon": 0.0,
+        "attack": "fgsm",
+        "success_rate": 0.5958333333333333,
+        "std_success_rate": 0.1787786496077078,
+        "makespan": 73.36666666666666
+      },
+      {
+        "epsilon": 0.05,
+        "attack": "fgsm",
+        "success_rate": 0.5125,
+        "std_success_rate": 0.19189298232782426,
+        "makespan": 63.166666666666664
+      },
+      {
+        "epsilon": 0.1,
+        "attack": "fgsm",
+        "success_rate": 0.35833333333333334,
+        "std_success_rate": 0.1818118685772619,
+        "makespan": 55.53333333333333
+      },
+      {
+        "epsilon": 0.15,
+        "attack": "fgsm",
+        "success_rate": 0.175,
+        "std_success_rate": 0.12332207155790618,
+        "makespan": 44.96666666666667
+      },
+      {
+        "epsilon": 0.2,
+        "attack": "fgsm",
+        "success_rate": 0.08333333333333333,
+        "std_success_rate": 0.10374916331657276,
+        "makespan": 90.2
+      },
+      {
+        "epsilon": 0.3,
+        "attack": "fgsm",
+        "success_rate": 0.008333333333333333,
+        "std_success_rate": 0.03118047822311618,
+        "makespan": 126.23333333333333
+      }
+    ],
+    "akash_curriculum": [
+      {
+        "epsilon": 0.0,
+        "attack": "fgsm",
+        "success_rate": 0.7375,
+        "std_success_rate": 0.21250000000000002,
+        "makespan": 47.766666666666666
+      },
+      {
+        "epsilon": 0.05,
+        "attack": "fgsm",
+        "success_rate": 0.5791666666666667,
+        "std_success_rate": 0.18109428176750605,
+        "makespan": 69.83333333333333
+      },
+      {
+        "epsilon": 0.1,
+        "attack": "fgsm",
+        "success_rate": 0.19583333333333333,
+        "std_success_rate": 0.1728539042724295,
+        "makespan": 57.93333333333333
+      },
+      {
+        "epsilon": 0.15,
+        "attack": "fgsm",
+        "success_rate": 0.09583333333333334,
+        "std_success_rate": 0.11494261853444769,
+        "makespan": 79.96666666666667
+      },
+      {
+        "epsilon": 0.2,
+        "attack": "fgsm",
+        "success_rate": 0.0375,
+        "std_success_rate": 0.06574889099191457,
+        "makespan": 104.63333333333334
+      },
+      {
+        "epsilon": 0.3,
+        "attack": "fgsm",
+        "success_rate": 0.008333333333333333,
+        "std_success_rate": 0.03118047822311618,
+        "makespan": 121.23333333333333
+      }
+    ]
+  },
+  "combined_fgsm_physical": {
+    "epsilon": 0.15,
+    "baseline": [
+      {
+        "n_adversary": 0,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.175,
+        "std_success_rate": 0.13919410907075053,
+        "makespan": 54.06666666666667
+      },
+      {
+        "n_adversary": 2,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.1875,
+        "std_success_rate": 0.128086884574495,
+        "makespan": 48.3
+      },
+      {
+        "n_adversary": 4,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.17916666666666667,
+        "std_success_rate": 0.15371555621413927,
+        "makespan": 66.13333333333334
+      }
+    ],
+    "akash_curriculum": [
+      {
+        "n_adversary": 0,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.09583333333333334,
+        "std_success_rate": 0.10043308994328291,
+        "makespan": 72.46666666666667
+      },
+      {
+        "n_adversary": 2,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.08333333333333333,
+        "std_success_rate": 0.10865337342004412,
+        "makespan": 77.93333333333334
+      },
+      {
+        "n_adversary": 4,
+        "adversary_strategy": "astar_pursuit",
+        "success_rate": 0.1125,
+        "std_success_rate": 0.12226167292601009,
+        "makespan": 64.13333333333334
+      }
+    ]
+  },
+  "summary_metrics": {
+    "baseline_clean_success": 0.6458333333333334,
+    "akash_clean_success": 0.7083333333333334,
+    "baseline_physical_4_success": 0.525,
+    "akash_physical_4_success": 0.6958333333333333,
+    "physical_4_absolute_gain": 0.17083333333333328,
+    "baseline_physical_drop_0_to_4": 0.12083333333333335,
+    "akash_physical_drop_0_to_4": 0.012500000000000067,
+    "baseline_fgsm_0_15_success": 0.175,
+    "akash_fgsm_0_15_success": 0.09583333333333334,
+    "fgsm_0_15_absolute_gain": -0.07916666666666665,
+    "baseline_physical_auc": 0.5859375,
+    "akash_physical_auc": 0.7104166746139526,
+    "baseline_fgsm_auc": 0.24618055934983257,
+    "akash_fgsm_auc": 0.21736109386439745
+  }
+}

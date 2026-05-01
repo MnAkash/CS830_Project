@@ -1,0 +1,16 @@
+{
+  "baseline_clean_success": 0.6458333333333334,
+  "akash_clean_success": 0.7083333333333334,
+  "baseline_physical_4_success": 0.525,
+  "akash_physical_4_success": 0.6958333333333333,
+  "physical_4_absolute_gain": 0.17083333333333328,
+  "baseline_physical_drop_0_to_4": 0.12083333333333335,
+  "akash_physical_drop_0_to_4": 0.012500000000000067,
+  "baseline_fgsm_0_15_success": 0.175,
+  "akash_fgsm_0_15_success": 0.09583333333333334,
+  "fgsm_0_15_absolute_gain": -0.07916666666666665,
+  "baseline_physical_auc": 0.5859375,
+  "akash_physical_auc": 0.7104166746139526,
+  "baseline_fgsm_auc": 0.24618055934983257,
+  "akash_fgsm_auc": 0.21736109386439745
+}

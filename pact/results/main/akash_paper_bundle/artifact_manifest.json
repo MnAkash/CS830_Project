@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-04-26",
+  "primary_result_dir": "../akash_quick",
+  "primary_model_dir": "../../../models/quick_akash_curriculum",
+  "paper_bundle_files": {
+    "readme": "README.md",
+    "physical_sweep_csv": "quick_physical_sweep.csv",
+    "fgsm_sweep_csv": "quick_fgsm_sweep.csv",
+    "combined_sweep_csv": "quick_combined_sweep.csv"
+  },
+  "plots": {
+    "physical_robustness": "../akash_quick/akash_physical_comparison.png",
+    "fgsm_cross_robustness": "../akash_quick/akash_fgsm_comparison.png",
+    "training_curves": "../akash_quick/akash_curriculum_training.png",
+    "final_frame_comparison": "../akash_quick/animations_physical/final_frame_comparison.png"
+  },
+  "animations": {
+    "baseline_clean": "../akash_quick/animations_physical/baseline_clean.gif",
+    "baseline_physical_attack": "../akash_quick/animations_physical/baseline_attacked.gif",
+    "akash_clean": "../akash_quick/animations_physical/fast_clean.gif",
+    "akash_physical_attack": "../akash_quick/animations_physical/fast_attacked.gif"
+  },
+  "headline_metrics": {
+    "baseline_physical_4_success": 0.525,
+    "akash_physical_4_success": 0.6958333333333333,
+    "physical_4_absolute_gain": 0.17083333333333328,
+    "baseline_physical_auc": 0.5859375,
+    "akash_physical_auc": 0.7104166746139526
+  },
+  "recommended_claim_scope": "Physical adversary robustness only; FGSM observation robustness remains a limitation."
+}

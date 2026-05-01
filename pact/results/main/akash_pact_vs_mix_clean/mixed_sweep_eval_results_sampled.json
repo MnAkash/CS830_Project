@@ -1,0 +1,157 @@
+{
+  "config": {
+    "episodes_per_condition": 30,
+    "adversary_counts": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "strategy": "mixed",
+    "grid": {
+      "num_agents": 8,
+      "size": 16,
+      "density": 0.3,
+      "max_episode_steps": 128,
+      "seed": 42
+    },
+    "policies": {
+      "baseline": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/models/phase2_smoke_baseline/best_policy.pt",
+      "pact": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/models/quick_akash_curriculum/best_policy.pt",
+      "pact_mix": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/models/quick_pact_mix_from_pact/best_policy.pt"
+    },
+    "device": "cpu",
+    "deterministic_policy": false,
+    "adversary_seed": 12345
+  },
+  "rows": [
+    {
+      "policy_key": "baseline",
+      "policy_label": "Baseline",
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.6333333333333333,
+          "std_success_rate": 0.17360555546666384,
+          "makespan": 82.1,
+          "std_makespan": 28.562621261595257,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 1,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.6,
+          "std_success_rate": 0.18085445345175588,
+          "makespan": 57.96666666666667,
+          "std_makespan": 29.44993869074924,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 2,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.6208333333333333,
+          "std_success_rate": 0.1922545332509888,
+          "makespan": 76.13333333333334,
+          "std_makespan": 31.379115489269115,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.5791666666666667,
+          "std_success_rate": 0.20535369217252677,
+          "makespan": 63.233333333333334,
+          "std_makespan": 33.64093075737088,
+          "source": "sampled_fresh_evaluation"
+        }
+      ]
+    },
+    {
+      "policy_key": "pact",
+      "policy_label": "PACT",
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7416666666666667,
+          "std_success_rate": 0.196143371598997,
+          "makespan": 51.166666666666664,
+          "std_makespan": 29.11137616503593,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 1,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7125,
+          "std_success_rate": 0.21445182054096282,
+          "makespan": 49.5,
+          "std_makespan": 34.882421552027225,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 2,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7333333333333333,
+          "std_success_rate": 0.1637240225365708,
+          "makespan": 57.36666666666667,
+          "std_makespan": 34.33121352679253,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7375,
+          "std_success_rate": 0.15595806060177417,
+          "makespan": 54.666666666666664,
+          "std_makespan": 30.584672995182114,
+          "source": "sampled_fresh_evaluation"
+        }
+      ]
+    },
+    {
+      "policy_key": "pact_mix",
+      "policy_label": "PACT-Mix",
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7166666666666667,
+          "std_success_rate": 0.1880085695446413,
+          "makespan": 54.96666666666667,
+          "std_makespan": 36.205417028701966,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 1,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7583333333333333,
+          "std_success_rate": 0.19346977943739832,
+          "makespan": 47.4,
+          "std_makespan": 31.155095891362617,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 2,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.75,
+          "std_success_rate": 0.17380544678845175,
+          "makespan": 51.5,
+          "std_makespan": 32.017443162542925,
+          "source": "sampled_fresh_evaluation"
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7375,
+          "std_success_rate": 0.15926262378013661,
+          "makespan": 48.03333333333333,
+          "std_makespan": 28.16674556201968,
+          "source": "sampled_fresh_evaluation"
+        }
+      ]
+    }
+  ],
+  "generated_from": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/results/main/akash_pact_vs_mix_clean/pact_vs_mix_eval_results.json",
+  "elapsed_seconds": 81.78377747535706
+}

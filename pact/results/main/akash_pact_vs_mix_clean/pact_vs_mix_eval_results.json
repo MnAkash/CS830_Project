@@ -1,0 +1,509 @@
+{
+  "config": {
+    "episodes_per_condition": 30,
+    "adversary_counts": [
+      0,
+      4
+    ],
+    "astar_sweep_counts": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "strategies": [
+      "random_walk",
+      "goal_blocking",
+      "astar_pursuit",
+      "mixed"
+    ],
+    "grid": {
+      "num_agents": 8,
+      "size": 16,
+      "density": 0.3,
+      "max_episode_steps": 128,
+      "seed": 42
+    },
+    "policies": {
+      "baseline": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/models/phase2_smoke_baseline/best_policy.pt",
+      "pact": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/models/quick_akash_curriculum/best_policy.pt",
+      "pact_mix": "/home/akash/UNH/Semesters/Spring2026/CS830/CS830_Project/cs830_shared_baseline/models/quick_pact_mix_from_pact/best_policy.pt"
+    }
+  },
+  "cross_rows": [
+    {
+      "policy_key": "baseline",
+      "policy_label": "Baseline",
+      "strategy": "random_walk",
+      "strategy_label": "Random movement",
+      "clean_success": 0.6208333333333333,
+      "adv4_success": 0.5958333333333333,
+      "drop_0_to_4": 0.025000000000000022,
+      "adv4_makespan": 71.63333333333334,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "random_walk",
+          "success_rate": 0.6208333333333333,
+          "std_success_rate": 0.15303639726839133,
+          "makespan": 65.86666666666666
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "random_walk",
+          "success_rate": 0.5958333333333333,
+          "std_success_rate": 0.19547840176233167,
+          "makespan": 71.63333333333334
+        }
+      ]
+    },
+    {
+      "policy_key": "pact",
+      "policy_label": "PACT",
+      "strategy": "random_walk",
+      "strategy_label": "Random movement",
+      "clean_success": 0.7583333333333333,
+      "adv4_success": 0.7416666666666667,
+      "drop_0_to_4": 0.016666666666666607,
+      "adv4_makespan": 58.96666666666667,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "random_walk",
+          "success_rate": 0.7583333333333333,
+          "std_success_rate": 0.17950549357115014,
+          "makespan": 54.7
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "random_walk",
+          "success_rate": 0.7416666666666667,
+          "std_success_rate": 0.1823839052353274,
+          "makespan": 58.96666666666667
+        }
+      ]
+    },
+    {
+      "policy_key": "pact_mix",
+      "policy_label": "PACT-Mix",
+      "strategy": "random_walk",
+      "strategy_label": "Random movement",
+      "clean_success": 0.7583333333333333,
+      "adv4_success": 0.75,
+      "drop_0_to_4": 0.008333333333333304,
+      "adv4_makespan": 47.06666666666667,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "random_walk",
+          "success_rate": 0.7583333333333333,
+          "std_success_rate": 0.17360555546666384,
+          "makespan": 43.2
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "random_walk",
+          "success_rate": 0.75,
+          "std_success_rate": 0.18540496217739158,
+          "makespan": 47.06666666666667
+        }
+      ]
+    },
+    {
+      "policy_key": "baseline",
+      "policy_label": "Baseline",
+      "strategy": "goal_blocking",
+      "strategy_label": "Goal blocking",
+      "clean_success": 0.6041666666666666,
+      "adv4_success": 0.39166666666666666,
+      "drop_0_to_4": 0.21249999999999997,
+      "adv4_makespan": 43.93333333333333,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "goal_blocking",
+          "success_rate": 0.6041666666666666,
+          "std_success_rate": 0.2043366639206538,
+          "makespan": 60.7
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "goal_blocking",
+          "success_rate": 0.39166666666666666,
+          "std_success_rate": 0.14337208778404378,
+          "makespan": 43.93333333333333
+        }
+      ]
+    },
+    {
+      "policy_key": "pact",
+      "policy_label": "PACT",
+      "strategy": "goal_blocking",
+      "strategy_label": "Goal blocking",
+      "clean_success": 0.7291666666666666,
+      "adv4_success": 0.4791666666666667,
+      "drop_0_to_4": 0.24999999999999994,
+      "adv4_makespan": 34.333333333333336,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "goal_blocking",
+          "success_rate": 0.7291666666666666,
+          "std_success_rate": 0.20177166688005416,
+          "makespan": 42.1
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "goal_blocking",
+          "success_rate": 0.4791666666666667,
+          "std_success_rate": 0.1679637030895531,
+          "makespan": 34.333333333333336
+        }
+      ]
+    },
+    {
+      "policy_key": "pact_mix",
+      "policy_label": "PACT-Mix",
+      "strategy": "goal_blocking",
+      "strategy_label": "Goal blocking",
+      "clean_success": 0.75,
+      "adv4_success": 0.4875,
+      "drop_0_to_4": 0.2625,
+      "adv4_makespan": 23.2,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "goal_blocking",
+          "success_rate": 0.75,
+          "std_success_rate": 0.1767766952966369,
+          "makespan": 47.06666666666667
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "goal_blocking",
+          "success_rate": 0.4875,
+          "std_success_rate": 0.15926262378013661,
+          "makespan": 23.2
+        }
+      ]
+    },
+    {
+      "policy_key": "baseline",
+      "policy_label": "Baseline",
+      "strategy": "astar_pursuit",
+      "strategy_label": "A* pursuit",
+      "clean_success": 0.65,
+      "adv4_success": 0.5291666666666667,
+      "drop_0_to_4": 0.12083333333333335,
+      "adv4_makespan": 64.06666666666666,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.65,
+          "std_success_rate": 0.18929694486000911,
+          "makespan": 70.36666666666666
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.5291666666666667,
+          "std_success_rate": 0.16981403226929026,
+          "makespan": 64.06666666666666
+        }
+      ]
+    },
+    {
+      "policy_key": "pact",
+      "policy_label": "PACT",
+      "strategy": "astar_pursuit",
+      "strategy_label": "A* pursuit",
+      "clean_success": 0.7291666666666666,
+      "adv4_success": 0.6958333333333333,
+      "drop_0_to_4": 0.033333333333333326,
+      "adv4_makespan": 42.7,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.7291666666666666,
+          "std_success_rate": 0.1828117580706692,
+          "makespan": 40.63333333333333
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.6958333333333333,
+          "std_success_rate": 0.18451324854570436,
+          "makespan": 42.7
+        }
+      ]
+    },
+    {
+      "policy_key": "pact_mix",
+      "policy_label": "PACT-Mix",
+      "strategy": "astar_pursuit",
+      "strategy_label": "A* pursuit",
+      "clean_success": 0.7458333333333333,
+      "adv4_success": 0.675,
+      "drop_0_to_4": 0.0708333333333333,
+      "adv4_makespan": 39.666666666666664,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.7458333333333333,
+          "std_success_rate": 0.16919950420205793,
+          "makespan": 40.6
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.675,
+          "std_success_rate": 0.16329931618554522,
+          "makespan": 39.666666666666664
+        }
+      ]
+    },
+    {
+      "policy_key": "baseline",
+      "policy_label": "Baseline",
+      "strategy": "mixed",
+      "strategy_label": "Mixed adversary",
+      "clean_success": 0.5708333333333333,
+      "adv4_success": 0.6041666666666666,
+      "drop_0_to_4": -0.033333333333333326,
+      "adv4_makespan": 63.5,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.5708333333333333,
+          "std_success_rate": 0.19547840176233167,
+          "makespan": 62.0
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.6041666666666666,
+          "std_success_rate": 0.17103646459811495,
+          "makespan": 63.5
+        }
+      ]
+    },
+    {
+      "policy_key": "pact",
+      "policy_label": "PACT",
+      "strategy": "mixed",
+      "strategy_label": "Mixed adversary",
+      "clean_success": 0.6958333333333333,
+      "adv4_success": 0.7208333333333333,
+      "drop_0_to_4": -0.025000000000000022,
+      "adv4_makespan": 53.766666666666666,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.6958333333333333,
+          "std_success_rate": 0.21331542893617006,
+          "makespan": 43.3
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7208333333333333,
+          "std_success_rate": 0.18451324854570442,
+          "makespan": 53.766666666666666
+        }
+      ]
+    },
+    {
+      "policy_key": "pact_mix",
+      "policy_label": "PACT-Mix",
+      "strategy": "mixed",
+      "strategy_label": "Mixed adversary",
+      "clean_success": 0.7583333333333333,
+      "adv4_success": 0.7625,
+      "drop_0_to_4": -0.004166666666666652,
+      "adv4_makespan": 60.766666666666666,
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7583333333333333,
+          "std_success_rate": 0.1736055554666638,
+          "makespan": 53.733333333333334
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "mixed",
+          "success_rate": 0.7625,
+          "std_success_rate": 0.16567412793392536,
+          "makespan": 60.766666666666666
+        }
+      ]
+    }
+  ],
+  "physical_rows": [
+    {
+      "policy_key": "baseline",
+      "policy_label": "Baseline",
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.625,
+          "std_success_rate": 0.16770509831248423,
+          "makespan": 69.0
+        },
+        {
+          "n_adversary": 1,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.6083333333333333,
+          "std_success_rate": 0.18181186857726192,
+          "makespan": 73.56666666666666
+        },
+        {
+          "n_adversary": 2,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.5958333333333333,
+          "std_success_rate": 0.1873147232749085,
+          "makespan": 65.86666666666666
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.5291666666666667,
+          "std_success_rate": 0.18166857797159702,
+          "makespan": 58.36666666666667
+        }
+      ]
+    },
+    {
+      "policy_key": "pact",
+      "policy_label": "PACT",
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.7333333333333333,
+          "std_success_rate": 0.1818118685772619,
+          "makespan": 48.666666666666664
+        },
+        {
+          "n_adversary": 1,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.7333333333333333,
+          "std_success_rate": 0.19561157657175837,
+          "makespan": 51.6
+        },
+        {
+          "n_adversary": 2,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.6708333333333333,
+          "std_success_rate": 0.22004576544184823,
+          "makespan": 47.7
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.7166666666666667,
+          "std_success_rate": 0.1578941276791368,
+          "makespan": 48.46666666666667
+        }
+      ]
+    },
+    {
+      "policy_key": "pact_mix",
+      "policy_label": "PACT-Mix",
+      "rows": [
+        {
+          "n_adversary": 0,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.7333333333333333,
+          "std_success_rate": 0.18465433171800283,
+          "makespan": 36.833333333333336
+        },
+        {
+          "n_adversary": 1,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.7416666666666667,
+          "std_success_rate": 0.18521758975744057,
+          "makespan": 57.9
+        },
+        {
+          "n_adversary": 2,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.7291666666666666,
+          "std_success_rate": 0.19654127358451257,
+          "makespan": 40.36666666666667
+        },
+        {
+          "n_adversary": 4,
+          "adversary_strategy": "astar_pursuit",
+          "success_rate": 0.6541666666666667,
+          "std_success_rate": 0.16671874186452132,
+          "makespan": 34.0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "random_walk": {
+      "label": "Random movement",
+      "baseline_adv4": 0.5958333333333333,
+      "pact_adv4": 0.7416666666666667,
+      "pact_mix_adv4": 0.75,
+      "pact_gain_vs_baseline": 0.14583333333333337,
+      "pact_mix_gain_vs_baseline": 0.15416666666666667,
+      "pact_mix_gain_vs_pact": 0.008333333333333304,
+      "baseline_drop": 0.025000000000000022,
+      "pact_drop": 0.016666666666666607,
+      "pact_mix_drop": 0.008333333333333304
+    },
+    "goal_blocking": {
+      "label": "Goal blocking",
+      "baseline_adv4": 0.39166666666666666,
+      "pact_adv4": 0.4791666666666667,
+      "pact_mix_adv4": 0.4875,
+      "pact_gain_vs_baseline": 0.08750000000000002,
+      "pact_mix_gain_vs_baseline": 0.09583333333333333,
+      "pact_mix_gain_vs_pact": 0.008333333333333304,
+      "baseline_drop": 0.21249999999999997,
+      "pact_drop": 0.24999999999999994,
+      "pact_mix_drop": 0.2625
+    },
+    "astar_pursuit": {
+      "label": "A* pursuit",
+      "baseline_adv4": 0.5291666666666667,
+      "pact_adv4": 0.6958333333333333,
+      "pact_mix_adv4": 0.675,
+      "pact_gain_vs_baseline": 0.16666666666666663,
+      "pact_mix_gain_vs_baseline": 0.14583333333333337,
+      "pact_mix_gain_vs_pact": -0.02083333333333326,
+      "baseline_drop": 0.12083333333333335,
+      "pact_drop": 0.033333333333333326,
+      "pact_mix_drop": 0.0708333333333333
+    },
+    "mixed": {
+      "label": "Mixed adversary",
+      "baseline_adv4": 0.6041666666666666,
+      "pact_adv4": 0.7208333333333333,
+      "pact_mix_adv4": 0.7625,
+      "pact_gain_vs_baseline": 0.1166666666666667,
+      "pact_mix_gain_vs_baseline": 0.15833333333333333,
+      "pact_mix_gain_vs_pact": 0.04166666666666663,
+      "baseline_drop": -0.033333333333333326,
+      "pact_drop": -0.025000000000000022,
+      "pact_mix_drop": -0.004166666666666652
+    },
+    "macro": {
+      "baseline_mean_adv4": 0.5302083333333333,
+      "pact_mean_adv4": 0.659375,
+      "pact_mix_mean_adv4": 0.66875
+    },
+    "baseline_astar_auc": 0.5859375,
+    "pact_astar_auc": 0.7057291666666666,
+    "pact_mix_astar_auc": 0.7140625
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-04-26 23:43:19",
+  "mode": "train",
+  "config_name": "quick",
+  "grid_config": {
+    "num_agents": 8,
+    "size": 16,
+    "density": 0.3,
+    "obs_radius": 2,
+    "max_episode_steps": 128,
+    "seed": 42,
+    "on_target": "finish"
+  },
+  "seed": 42,
+  "device": "cpu",
+  "baseline_checkpoint": "models/quick_akash_curriculum/best_policy.pt",
+  "total_timesteps": 262144,
+  "n_iters": 128,
+  "n_steps": 256,
+  "batch_size": 512,
+  "lr": 0.0001,
+  "n_epochs": 4,
+  "max_adversary": 4,
+  "warmup_fraction": 0.0,
+  "adversary_strategy": "astar_pursuit",
+  "obs_noise_std": 0.03
+}
