@@ -31,9 +31,16 @@ The main idea is simple: a MAPF policy should not only work in clean cooperative
 |   +-- src/
 |   +-- models/phase2_smoke_baseline/
 |   +-- results/
-+-- final_paper/                      # Paper materials
-+-- poster/                           # Poster materials
++-- doc/                             # Overview image for README
 ```
+
+## Overview
+
+The project overview image is shown below:
+
+![CS830 final project poster](doc/CS830_final_project_poster.png)
+
+If you want the shortest visual summary of the project, start with the image above and then use the figures below for the full result breakdown.
 
 ## Method at a Glance
 
@@ -47,51 +54,153 @@ PACT starts from the shared PPO baseline checkpoint and continues training under
 | Physical adversaries | Grid agents that chase, wander, block goals, or mix strategies |
 | Evaluation | Sweeps over adversary count, adversary type, and observation noise |
 
-## Headline Results
+## Reported Benchmark
 
-The table below reports success rate with four physical adversaries. Higher is better.
+Unless otherwise noted, the results highlighted below use the reported 8-agent benchmark:
 
-| Physical adversary type | Baseline | PACT | PACT-Mix |
+| Setting | Value |
+| --- | --- |
+| Social agents | 8 |
+| Grid size | 16 x 16 |
+| Obstacle density | 0.30 |
+| Max episode steps | 128 |
+| Evaluation episodes per point | 30 |
+| Social policy | Shared PPO actor-critic |
+| PACT curriculum | A* pursuit adversaries, 0 -> 4 |
+| PACT-Mix fine-tuning | 4 mixed adversaries |
+
+Success rate means the fraction of social agents that reach their goals. AUC means the normalized area under the success-rate curve as the number of adversaries increases.
+
+## Results Overview
+
+There are two distinct result stories in this repository:
+
+1. **PACT as the specialist**
+   - The main curriculum is designed around A* pursuit adversaries.
+   - This is the strongest direct robustness claim in the project.
+
+2. **PACT-Mix as the broader generalist**
+   - PACT-Mix continues from the PACT checkpoint and broadens robustness across random movement, goal blocking, A* pursuit, and mixed adversaries.
+
+### Main A* Pursuit Result
+
+This is the cleanest single-number result for the curriculum idea:
+
+| Metric | Baseline | PACT | Change |
+| --- | ---: | ---: | ---: |
+| Clean success | 62.5% | 73.3% | +10.8 pp |
+| Success with 4 A* chasers | 52.9% | 71.7% | +18.8 pp |
+| Drop from clean to 4 chasers | 9.6 pp | 1.6 pp | 8.0 pp smaller drop |
+| A* physical robustness AUC | 0.586 | 0.706 | +0.120 |
+
+Interpretation: PACT does not just improve the attacked case. It also makes the policy degrade much less sharply as the number of physical chasers increases.
+
+### Broad Physical Robustness Result
+
+The final three-policy comparison shows the expected tradeoff between specialization and generalization.
+
+| Physical adversary type at 4 attackers | Baseline | PACT | PACT-Mix |
 | --- | ---: | ---: | ---: |
 | Random movement | 59.6% | 74.2% | 75.0% |
 | Goal blocking | 39.2% | 47.9% | 48.8% |
-| A* pursuit | 52.9% | 69.6% | 67.5% |
-| Mixed adversary | 60.4% | 72.1% | 76.2% |
+| A* pursuit | 52.9% | 71.7% | 65.4% |
+| Mixed adversary | 60.4% | 73.8% | 73.8% |
 | Mean across types | 53.0% | 65.9% | 66.9% |
 
-Key takeaway: PACT improves directed A* pursuit robustness, while PACT-Mix gives the best broad average across adversary types.
+Interpretation:
+
+- PACT is strongest on the exact A* pursuit threat it was trained against.
+- PACT-Mix gives the best average across different physical adversary types.
+- The broad-robustness summary is the mixed-adversary sweep AUC: baseline `0.607`, PACT `0.730`, PACT-Mix `0.745`.
+
+### Claim Boundary
+
+This project is about **physical adversary robustness**, not universal adversarial robustness.
+
+- Under strong FGSM observation attacks, PACT does not outperform the baseline.
+- The right claim is: curriculum exposure to embodied adversaries improves robustness to physical interference on the grid.
 
 ## Visual Results
 
+The overview image above is the presentation-friendly summary. The figures below unpack the same story in more detail and separate the specialized A* result from the broader mixed-adversary result.
+
 ### Training Dynamics
 
-PACT first adapts under an A* pursuit curriculum, then the mixed variant continues with broader physical pressure.
+PACT first learns under an A* pursuit curriculum, then PACT-Mix continues from that checkpoint with four mixed adversaries.
 
 ![PACT and PACT-Mix training curves](pact/results/main/akash_pact_vs_mix_clean/curriculum_training_pact_mix_direct.png)
 
-### Physical Robustness Sweep
+What to notice:
 
-Success rate is measured as the number of physical adversaries increases.
+- The adversary count ramps up during PACT instead of jumping directly to the hardest setting.
+- PACT-Mix begins only after the A* curriculum has already produced a robust checkpoint.
+- The project uses continuation training rather than retraining a new policy from scratch.
 
-![Physical robustness comparison](pact/results/main/akash_pact_vs_mix_clean/physical_robustness_three_policy.png)
+### A* Pursuit Robustness Sweep
+
+This figure is the direct specialization check for the main PACT curriculum.
+
+![A* pursuit robustness comparison](pact/results/main/akash_pact_vs_mix_clean/physical_robustness_three_policy.png)
+
+What to notice:
+
+- As the number of A* chasers increases, the baseline drops much faster than PACT.
+- PACT improves the hardest four-chaser condition from `52.9%` to `71.7%`.
+- PACT-Mix remains strong, but it is not the best pure A* policy because it trades some specialization for broader coverage.
+
+### Broad Physical Robustness Sweep
+
+This is the clearest summary of broad physical robustness under mixed attackers.
+
+![Mixed adversary robustness comparison](pact/results/main/akash_pact_vs_mix_clean/mixed_robustness_readme.png)
+
+What to notice:
+
+- At four mixed adversaries, the baseline falls to `57.9%`, while both PACT and PACT-Mix reach `73.8%`.
+- PACT-Mix also shortens mean makespan from `54.7` to `48.0` relative to PACT at the same four-mixed setting.
+- The mixed-sweep AUC improves from `0.607` to `0.730` to `0.745`, which is why PACT-Mix is the strongest broad-robustness model.
 
 ### Cross-Adversary Generalization
 
-PACT-Mix is designed to generalize beyond a single adversary behavior.
+This figure compares the three policies at four attackers across four physical threat types.
 
 ![Cross-adversary comparison](pact/results/main/akash_pact_vs_mix_clean/mixed_adversary_type_comparison_three_policy.png)
 
-### Representative Rollout
+What to notice:
 
-A matched mixed-adversary rollout shows how the robust policies keep more agents moving toward goals under congestion.
+- PACT improves over the baseline on all four threat types.
+- PACT-Mix improves over PACT on random movement, goal blocking, and mixed adversaries.
+- PACT remains stronger than PACT-Mix on pure A* pursuit, which matches the design of the training curriculum.
+
+### Qualitative Rollout
+
+The qualitative result matches the aggregate numbers: the robust policies keep more agents moving toward goals under the same mixed-adversary seed.
 
 ![Final frame comparison](pact/results/main/akash_pact_vs_mix_clean/animations_mixed_direct/final_frame_threeway_direct.png)
 
+In the representative rollout shown above:
+
+- Baseline reaches `4/8` goals
+- PACT reaches `7/8`
+- PACT-Mix reaches `7/8`
+
 ### Animation
 
-The GIF below compares policies in the same mixed physical-adversary setting.
+The GIF below shows the same mixed physical-adversary setting as an animation rather than a final frame.
 
 ![Mixed adversary rollout comparison](pact/results/main/akash_pact_vs_mix_clean/animations_mixed_direct/comparison_mixed_threeway_direct.gif)
+
+### FGSM Limitation
+
+The method does not solve observation-space robustness, and the README makes that explicit because it is part of the final result story.
+
+![FGSM cross-robustness limitation](pact/results/main/akash_pact_vs_mix_clean/fgsm_cross_robustness_clean.png)
+
+What to notice:
+
+- Physical-adversary training helps against embodied agents on the grid.
+- It does not automatically transfer to stronger FGSM sensor attacks.
+- This keeps the main claim narrow and defensible.
 
 ## Installation
 
@@ -169,19 +278,6 @@ python pact/visualize.py \
   --physical-only \
   --device cpu
 ```
-
-## Important Artifacts
-
-| Artifact | Path |
-| --- | --- |
-| Shared baseline checkpoint | `cs830_shared_baseline/models/phase2_smoke_baseline/best_policy.pt` |
-| PACT checkpoint | `pact/models/quick_akash_curriculum/best_policy.pt` |
-| PACT-Mix checkpoint | `pact/models/quick_pact_mix_from_pact/best_policy.pt` |
-| Main three-policy summary | `pact/results/main/akash_pact_vs_mix_clean/pact_vs_mix_summary.json` |
-| Physical robustness plot | `pact/results/main/akash_pact_vs_mix_clean/physical_robustness_three_policy.png` |
-| Cross-adversary plot | `pact/results/main/akash_pact_vs_mix_clean/mixed_adversary_type_comparison_three_policy.png` |
-| Mixed rollout GIF | `pact/results/main/akash_pact_vs_mix_clean/animations_mixed_direct/comparison_mixed_threeway_direct.gif` |
-| Paper bundle CSVs | `pact/results/main/akash_paper_bundle/` |
 
 ## Reproducibility Notes
 
